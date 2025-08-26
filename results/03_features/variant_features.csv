@@ -1,0 +1,3 @@
+chrom,pos,ref,alt,qual,tumor_vaf,normal_vaf,tumor_depth,normal_depth,gene,gene_role,is_transition,vaf_ratio
+chr17,7578406,G,T,60.0,0.3333333333333333,0.0,45,45,TP53,tumor_suppressor,False,333.3333333333333
+chr12,25398284,C,T,55.0,0.44,0.0,50,50,UNKNOWN,UNKNOWN,True,440.0

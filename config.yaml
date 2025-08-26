@@ -1,0 +1,132 @@
+# Project configuration
+project_name: "somatic_variant_ml_pipeline"
+version: "1.0.0"
+
+# Data sources and paths
+data:
+  # Input files
+  inputs:
+    vcf_file: "data/input/somatic_variants.vcf.gz"
+    sample_sheet: "data/samples.tsv"
+    
+  # Reference databases (auto-download)
+  databases:
+    cosmic:
+      urls:
+        census: "https://cancer.sanger.ac.uk/cosmic/file_download/GRCh38/cosmic/v97/cancer_gene_census.csv"
+        mutations: "https://cancer.sanger.ac.uk/cosmic/file_download/GRCh38/cosmic/v97/VCF/CosmicCodingMuts.vcf.gz"
+      local_paths:
+        census: "data/databases/cosmic/census.csv"
+        mutations: "data/databases/cosmic/mutations.vcf.gz"
+    
+    clinvar:
+      urls:
+        vcf: "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/vcf_GRCh38/clinvar.vcf.gz"
+        summary: "https://ftp.ncbi.nlm.nih.gov/pub/clinvar/tab_delimited/variant_summary.txt.gz"
+      local_paths:
+        vcf: "data/databases/clinvar/clinvar.vcf.gz"
+        summary: "data/databases/clinvar/variant_summary.txt.gz"
+    
+    oncokb:
+      urls:
+        actionable: "https://www.oncokb.org/api/v1/utils/allActionableVariants.txt"
+      local_paths:
+        actionable: "data/databases/oncokb/actionableVariants.txt"
+        
+    reference:
+      urls:
+        genome: "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz"
+      local_paths:
+        genome: "data/reference/GRCh38.fa.gz"
+
+  # Output structure
+  outputs:
+    base_dir: "results/"
+    filtered: "results/01_filtered/"
+    annotated: "results/02_annotated/" 
+    features: "results/03_features/"
+    models: "results/04_models/"
+    predictions: "results/05_predictions/"
+    reports: "results/06_reports/"
+
+# Quality filtering parameters
+filtering:
+  quality:
+    # Variant-level filters
+    min_qual: 30
+    min_depth: 10
+    max_depth: 1000
+    min_gq: 20
+    
+    # Allele frequency filters
+    tumor:
+      min_vaf: 0.05
+      max_vaf: 0.95
+      min_alt_reads: 3
+    
+    normal:
+      max_vaf: 0.02
+      max_alt_reads: 2
+    
+    # Technical filters
+    strand_bias:
+      max_fs: 60.0
+      max_sor: 3.0
+    
+    mapping_quality:
+      min_mq: 40
+      max_mqranksum: 12.5
+
+  # Sample-specific filters
+  samples:
+    tumor_purity:
+      min_purity: 0.2
+    matched_normal:
+      require_normal: true
+      
+  # Variant type filters
+  variant_types:
+    include:
+      - "SNP"
+      - "INDEL"
+    exclude:
+      - "COMPLEX"
+    size_limits:
+      max_indel_length: 50
+      
+  # Genomic region filters
+  regions:
+    coding_only: true
+    include_utrs: false
+    exclude:
+      - "centromeres"
+      - "telomeres" 
+      - "repetitive_regions"
+
+# ML model configuration
+ml_models:
+  algorithms:
+    - "random_forest"
+    - "gradient_boosting"
+    - "logistic_regression"
+  
+  parameters:
+    random_forest:
+      n_estimators: 100
+      max_depth: 10
+      min_samples_split: 5
+    
+    gradient_boosting:
+      n_estimators: 100
+      learning_rate: 0.1
+      max_depth: 6
+    
+    cross_validation:
+      folds: 5
+      random_state: 42
+
+# Resource allocation
+resources:
+  threads: 4
+  memory_gb: 8
+  temp_dir: "/tmp"

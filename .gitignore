@@ -1,2 +1,10 @@
+# Large database files
 data/databases/*.vcf.gz
+data/databases/*.csv
 data/databases/*.txt
+
+# Snakemake metadata
+.snakemake/
+
+# Results files (can be regenerated)
+results/

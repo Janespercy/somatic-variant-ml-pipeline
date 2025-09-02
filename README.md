@@ -13,13 +13,13 @@ A machine learning pipeline for predicting pathogenicity of somatic variants in 
 
 
 # Clone repository
-git clone https://github.com/Janespercy/somatic-variant-ml-pipeline.git
-cd somatic-variant-ml-pipeline
+- git clone https://github.com/Janespercy/somatic-variant-ml-pipeline.git
+- cd somatic-variant-ml-pipeline
 
 # Create conda environment
 
-conda env create -f envs/annotation.yaml
-conda activate annotation
+- conda env create -f envs/annotation.yaml
+- conda activate annotation
 
 # Install additional dependencies
 pip install -r requirements.txt
@@ -30,8 +30,8 @@ pip install -r requirements.txt
 snakemake -j 1
 
 # Run individual steps
-snakemake filter_variants -j 1
-snakemake train_model -j 1
+- snakemake filter_variants -j 1
+- snakemake train_model -j 1
 
 ## Pipeline Overview
 

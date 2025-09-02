@@ -50,14 +50,14 @@ The pipeline addresses key challenges in somatic variant interpretation:
 
 ## File Structure
 
-├── Snakefile              # Workflow definition
-├── config.yaml            # Parameters and thresholds
-├── scripts/               # Processing modules
-│   ├── filter_variants.py
-│   ├── annotate_cosmic.py
-│   ├── extract_features.py
-│   └── train_model.py
-└── envs/                  # Environment specifications
+ 1. Snakefile              # Workflow definition
+ 2. config.yaml            # Parameters and thresholds
+ 3. scripts/               # Processing modules
+    ─ filter_variants.py
+    ─ annotate_cosmic.py
+    ─ extract_features.py
+    - train_model.py
+ 4. envs/                  # Environment specifications
 
 ## Requirements
 

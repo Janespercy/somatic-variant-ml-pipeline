@@ -1,19 +1,25 @@
 # Somatic Variant ML Pipeline
 
-A machine learning pipeline for predicting pathogenicity of somatic variants in cancer genomics.
+A machine learning pipeline for predicting pathogenicity of somatic variants in cancer genomics. Implements VAF-based filtering, gene annotation, and Random Forest classification.
 
 ## Features
-- Automated database downloading (COSMIC, ClinVar, OncoKB)
-- VAF-based somatic variant filtering
-- Gene annotation and biological context
-- ML feature extraction from genomic data
-- Random Forest pathogenicity prediction
 
-## Usage
+- **Automated database integration** (COSMIC, ClinVar, OncoKB)
+- **Somatic variant filtering** using biologically-informed VAF thresholds
+- **Gene annotation** with cancer gene classification
+- **ML feature extraction** from genomic and clinical data
+- **Pathogenicity prediction** using Random Forest
+
+## Installation
+
 ```bash
-# Run complete pipeline
-snakemake -j 1
+# Clone repository
+git clone https://github.com/Janespercy/somatic-variant-ml-pipeline.git
+cd somatic-variant-ml-pipeline
 
-# Run individual steps
-snakemake filter_variants -j 1
-snakemake train_model -j 1
+# Create conda environment
+conda env create -f envs/annotation.yaml
+conda activate annotation
+
+# Install additional dependencies
+pip install -r requirements.txt

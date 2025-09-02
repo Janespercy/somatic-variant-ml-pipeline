@@ -1,0 +1,10 @@
+##fileformat=VCFv4.2
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Allelic depths">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read depth">
+##INFO=<ID=SOMATIC,Number=0,Type=Flag,Description="Somatic mutation">
+##INFO=<ID=GENE,Number=1,Type=String,Description="Gene symbol">
+##INFO=<ID=GENE_ROLE,Number=1,Type=String,Description="Cancer gene role">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	NORMAL	TUMOR
+chr17	7578406	.	G	T	60	PASS	SOMATIC;GENE=TP53;GENE_ROLE=tumor_suppressor	GT:AD:DP	0/0:45,0:45	0/1:30,15:45
+chr12	25398284	.	C	T	55	PASS	SOMATIC;GENE=UNKNOWN;GENE_ROLE=UNKNOWN	GT:AD:DP	0/0:50,0:50	0/1:28,22:50

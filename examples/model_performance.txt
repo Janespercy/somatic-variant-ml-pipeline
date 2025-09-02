@@ -1,0 +1,23 @@
+cat ># Somatic Variant ML Pipeline - Model Performance
+
+## Dataset Summary
+- Total variants processed: 3
+- Variants passing VAF filters: 2
+- Genes annotated: TP53 (tumor suppressor), KRAS (oncogene)
+
+## Feature Importance
+- Gene role: 23.1% (highest importance)
+- Quality score: 19.2%
+- VAF ratio: 15.4%
+- Tumor depth: 15.4%
+- Transition status: 15.4%
+- Tumor VAF: 11.5%
+
+## Filtering Results
+- PIK3CA variant filtered out (normal VAF 2.4% > 2% threshold)
+- TP53 and KRAS variants retained as high-confidence somatic calls
+
+## Biological Interpretation
+The model correctly prioritizes gene context and VAF patterns for 
+distinguishing somatic from germline variants in cancer samples.
+

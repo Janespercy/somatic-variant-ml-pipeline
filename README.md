@@ -17,6 +17,7 @@ git clone https://github.com/Janespercy/somatic-variant-ml-pipeline.git
 cd somatic-variant-ml-pipeline
 
 # Create conda environment
+
 conda env create -f envs/annotation.yaml
 conda activate annotation
 
